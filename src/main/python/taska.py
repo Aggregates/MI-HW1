@@ -12,13 +12,12 @@ import numpy
 from matplotlib import pyplot as plot
 from support import csv
 
-def hello():
-	print "Hello From Q1"
-
 def run():
 	# Import the data for the two spirals Task
 	dataset, classes = csv.loadCSV("spirals\\spiralsdataset.txt")
 	print dataset
 
+
+# Define ability to run from command line
 if __name__ == "__main__":
 	run()
