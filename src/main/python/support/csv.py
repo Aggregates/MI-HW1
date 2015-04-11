@@ -86,3 +86,28 @@ def loadSVMProblem(filename,multiclass=True,outputs=1,separator=','):
     
     #use libsvm's data container:
     return svm_problem([keys.index(i) for i in out_data],in_data),in_data,[keys.index(i) for i in out_data],keys
+
+def loadRecords(filename, recordSeparator='\n', fieldSeparator=','):
+    #read in all the lines
+    f = open(filename).readlines()
+
+    #start our datasets
+    in_data = []
+    out_data =[]
+
+    #process the file
+    for record in f:
+        #remove whitespace and split according to separator character
+        fields = record.split(',')
+        print fields
+
+        input = fields[0]
+        in_data.append(input)
+        output = fields[1]
+        out_data.append(output)
+
+    dataset = SupervisedDataSet(len(in_data[0]), len(out_data[0]))
+    for i in xrange( len(out_data) ):
+        dataset.addSample(in_data[i], out_data[i])
+
+    return dataset
