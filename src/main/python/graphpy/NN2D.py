@@ -2,7 +2,7 @@ import pickle
 from numpy import arange,meshgrid,zeros
 from matplotlib import pyplot as plot
 
-def plotNN(filePath, lowerBound, upperBound, step):
+def plotNN(network, lowerBound, upperBound, step):
 	
 	assert lowerBound <= upperBound
 
@@ -11,13 +11,11 @@ def plotNN(filePath, lowerBound, upperBound, step):
 	X,Y = meshgrid(X,Y)
 	Z = zeros(X.shape)
 
-	model = pickle.load(open(filePath))
-
-	for i in range(len(X)):
-	    for j in range(len(Y)):
+	for i in range( len(X) ):
+	    for j in range( len(Y) ):
 	        
 	        # Classify the result
-	        result = model.activate([X[i][j],Y[i][j]])
+	        result = network.activate( [X[i][j], Y[i][j]] )
 	        if result[0] > result[1]:
 	            Z[i][j] = 0 #lower limit
 	        else:
@@ -29,6 +27,10 @@ def plotNN(filePath, lowerBound, upperBound, step):
 	plot.title("Neural Network Activation")
 
 	return plot
+
+def plotNNFromFile(filePath, lowerBound, upperBound, step):
+	network = pickle.load(open(filePath))
+	return plotNN(network, lowerBound, upperBound, step)
 
 def classifyNN(classes, dataset, resultSet):
 	# Compare each result to the expected value

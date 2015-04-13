@@ -4,3 +4,5 @@ pybrain
 target
 *.pyc
 .idea
+*.exe
+*.pkl
