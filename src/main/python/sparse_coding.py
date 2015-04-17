@@ -1,19 +1,29 @@
 import sys
 from random import randint
 
+def emptyVector(length):
+    emptyCodedVector = []
+    for i in xrange(0, length, 1):
+        emptyCodedVector.append(0)
+    return emptyCodedVector
+
+def codedSample(emptyVector, value):
+    sample = list(emptyVector)
+    sample[value] = 1
+    #print sample
+    return sample
+
 def generate(sampleCount, lowerBound=0, upperBound=15):
 
     dataset = []
-    emptyCodedVector = []
-    for i in xrange(0, upperBound, 1):
-        emptyCodedVector.append(0)
+    emptyCodedVector = emptyVector(upperBound)
 
     for i in xrange(sampleCount):
         rand = randint(lowerBound, upperBound-1) # Inclusive
-        sample = list(emptyCodedVector)
-        sample[rand] = 1
+        sample = codedSample(emptyCodedVector, rand)
         dataset.append(sample)
-        print sample
+
+    return dataset
 
 if __name__ == "__main__":
     
