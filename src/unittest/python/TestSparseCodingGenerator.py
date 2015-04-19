@@ -39,5 +39,13 @@ class TestSparseCodingGenerator(unittest.TestCase):
         expected = [[1,0,0,0,0,0,0,0,0,0]]
         assert len(vector) == len(expected)
 
+    def test_GetClassifier_Length5_Class2(self):
+        vector = codedSample(emptyVector(5), 2)
+        assert getClassifier(vector) == 2
+
+    def test_GetClassifier_Length10_Class7(self):
+        vector = codedSample(emptyVector(10), 7)
+        assert getClassifier(vector) == 7
+
 if __name__ == '__main__':
     unittest.main()
