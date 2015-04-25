@@ -4,7 +4,7 @@ from numpy import arange, meshgrid, zeros
 from matplotlib import pyplot as plot
 from numpy import array
 
-def plotSVM(filePath, lowerBound, upperBound, step):
+def plotSVM(solver, lowerBound, upperBound, step):
 	
 	assert lowerBound < upperBound
 
@@ -13,13 +13,11 @@ def plotSVM(filePath, lowerBound, upperBound, step):
 	X,Y = meshgrid(X,Y)
 	Z = zeros(X.shape)
 
-	model = svm_load_model('mysvm')
-
 	for i in range(len(X)):
 	    for j in range(len(Y)):
 	        
 	        #Classify the result
-	        result = int( svm_predict([0.], [[ X[i][j], Y[i][j] ]], model, '-q')[0][0] )
+	        result = int( svm_predict([0.], [[ X[i][j], Y[i][j] ]], solver, '-q')[0][0] )
 	        if result == 0:
 	            Z[i][j] = 0 #lower limit
 	        else:
@@ -31,6 +29,10 @@ def plotSVM(filePath, lowerBound, upperBound, step):
 	plot.title("SVM Activation")
 
 	return plot
+
+def plotSVMFromFile(filePath, lowerBound, upperBound, step):
+	model = svm_load_model(filePath)
+	return plotSVM(model, lowerBound, upperBound, step)
 
 def classifySVM(classes, data, outputs, solver):
 	errors = [0]*len(classes)
