@@ -6,3 +6,5 @@ target
 .idea
 *.exe
 *.pkl
+*.class
+*.html
