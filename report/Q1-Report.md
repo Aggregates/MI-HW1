@@ -9,3 +9,34 @@ COMP3330 - Machine Intelligence
 # Question 1 - Variations of the Two-Spiral Task #
 
 ## Task a) ##
+
+## Task d) ##
+
+Comparing the implementation of Task A (training an artificial neural network on the two spirals task), the SVM responded extremely well to its initial values for its COST and GAMMA parameters to achieve a satisfying result as shown below:
+
+![SVM Cost 0.6 Gamma 3.5](images/q1_taskd_svm_twospirals_Cost0.6_Gamma3.5.png)
+SVM Activation with Cost = 0.6, Gamma = 3.5
+
+Modifying COST and GAMMA to 0.9 and 6 respectively (i.e. by increasing the cost of an incorrect classification, but providing less generality) we obtain the following result:
+
+![SVM Cost 0.6 Gamma 3.5](images/q1_taskd_svm_twospirals_Cost0.9_Gamma6.png)
+SVM Activation with Cost = 0.9, Gamma = 6
+
+Furthermore, the time required to successfully train the SVM was significantly lower that that required to train the ANN (as expected) ``TODO: Add ANN Training Times``
+
+|Iteration|SVM Training Time|ANN Training Time|
+|---------|-----------------|-----------------|
+|1|0.00400018692017|?|
+|2|0.00399994850159|?|
+|3|0.00300002098083|?|
+|4|0.00399994850159|?|
+|5|0.00399994850159|?|
+|6|0.00300002098083|?|
+|7|0.00299978256226|?|
+|8|0.00399994850159|?|
+|9|0.00300002098083|?|
+|10|0.00399994850159|?|
+|Average|0.003599977493287|?|
+
+![SVM Cost 0.6 Gamma 3.5](images/q1_taskd_svmTrainingTimes.png)
+Task A SVM Training Times

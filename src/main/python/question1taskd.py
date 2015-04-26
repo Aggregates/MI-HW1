@@ -15,7 +15,7 @@ from svm.svm import *
 from svm.svmutil import svm_train, svm_predict, svm_save_model
 from support import csv
 #from graphpy import SVM2D # importing this doesn't work for some reason
-from time import strftime
+from time import strftime, time
 from matplotlib import pyplot as plot
 from numpy import arange, meshgrid, zeros
 
@@ -54,12 +54,12 @@ def taska():
     # Defines how high the cost is of a misclassification
     # versus making the decision plane more complex.
     # Low COST makes decisions very simple but creates classification errors
-    COST = 0.65
+    COST = 0.9
 
     # Used for generalisation
     # - Low GAMMA means high generalisation
     # - High GAMMA is closer to original dataset
-    GAMMA = 3.5
+    GAMMA = 6
 
     # Get the data
     dataset, data, outputs, classes = csv.loadSVMProblem("spirals\\SpiralOut.txt")
@@ -71,7 +71,12 @@ def taska():
     parameters.gamma = GAMMA
 
     # Train the SVM
+    start = time()
     solver = svm_train(dataset, parameters)
+    end = time()
+
+    trainingTime = end - start
+    print trainingTime
 
     uniqueFileName = "generated\\Q1DTaskA-TrainedSVM-" + strftime("%Y-%m-%d_%H-%M-%S") + '.pkl'
     svm_save_model(uniqueFileName,solver)
