@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+  "build_systems":
+  [{
+    "name": "PyBuilder",
+    "cmd": ["pyb_"]
+  }]
+}
