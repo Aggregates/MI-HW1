@@ -1,3 +1,4 @@
+#!/usr/bin/env python2.7
 # COMP3330 - Machine Intelligence
 # Homework Assignment 1
 # Question 1 - Variations of the Two-Spiral Task
@@ -12,24 +13,24 @@ from pybrain.structure import FullConnection
 from support import csv
 from graphpy import NN2D
 from time import strftime
+from os import path
 
 import sys
 import numpy
 import pickle
 
-
 def run():
     # Parameters used for program
     HIDDEN_LAYERS = 10
-    LEARNING_DECAY = 1 # Set in range [0.9, 1]
+    LEARNING_DECAY = 0.999999 # Set in range [0.9, 1]
     LEARNING_RATE = 0.1 # Set in range [0, 1]
-    MOMENTUM = 0.1 # Set in range [0, 0.5]
-    TRAINING_ITERATIONS = 1000
+    MOMENTUM = 0.12 # Set in range [0, 0.5]
+    TRAINING_ITERATIONS = 10000
     BATCH_LEARNING = False
     VALIDATION_PROPORTION = 0.0
 
     # Import the data for the two spirals Task
-    dataset, classes = csv.loadCSV("spirals\\SpiralOut.txt")
+    dataset, classes = csv.loadCSV(path.abspath('spirals/SpiralOut.txt'))
 
     # Set up the network and trainer
     inDimension = dataset.indim
