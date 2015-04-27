@@ -7,7 +7,7 @@
 from pybrain.supervised.trainers import BackpropTrainer
 from pybrain.datasets import SupervisedDataSet
 from pybrain.structure import FeedForwardNetwork
-from pybrain.structure import LinearLayer, SigmoidLayer
+from pybrain.structure import LinearLayer, SigmoidLayer, MDLSTMLayer, TanhLayer, LSTMLayer
 from pybrain.structure import FullConnection
 from support import csv
 from graphpy import NN2D
@@ -21,10 +21,10 @@ import pickle
 def run():
     # Parameters used for program
     HIDDEN_LAYERS = 10
-    LEARNING_DECAY = 0.99999 # Set in range [0.9, 1]
-    LEARNING_RATE = 0.30 # Set in range [0, 1]
+    LEARNING_DECAY = 1 # Set in range [0.9, 1]
+    LEARNING_RATE = 0.1 # Set in range [0, 1]
     MOMENTUM = 0.1 # Set in range [0, 0.5]
-    TRAINING_ITERATIONS = 500
+    TRAINING_ITERATIONS = 1000
     BATCH_LEARNING = False
     VALIDATION_PROPORTION = 0.0
 
@@ -38,7 +38,7 @@ def run():
 
     # Define the node input layers
     inLayer = LinearLayer(inDimension, name='input')
-    hiddenLayer1 = SigmoidLayer(HIDDEN_LAYERS, name='hidden1')
+    hiddenLayer1 = MDLSTMLayer(HIDDEN_LAYERS, name='hidden1')
     hiddenLayer2 = SigmoidLayer(HIDDEN_LAYERS, name='hidden2')
     outLayer = LinearLayer(outDimension, name='output')
 
