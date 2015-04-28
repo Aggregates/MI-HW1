@@ -14,7 +14,7 @@ from pybrain.tools.shortcuts import buildNetwork
 from support import csv
 from graphpy import NN2D
 from time import strftime
-from os import path
+from os import path, makedirs
 
 import sys
 import numpy
@@ -70,14 +70,26 @@ def run():
         else:
             trainingErrors, validationErrors = trainer.trainUntilConvergence(validationProportion=VALIDATION_PROPORTION)
 
-        if trainingError < 0.01:
-          break
+    # create path if it doesn't exist
+    generated_dir = path.abspath(path.join("generated", "TaskA-TrainedNN-{}".format(strftime("%Y-%m-%d_%H-%M-%S"))))
+    if not path.exists(generated_dir):
+      makedirs(generated_dir)
+
+    # save parameters
+    with open(path.normpath(path.join(generated_dir, "params.txt")), "a") as f:
+      f.write("HIDDEN_LAYERS = {}\n".format(HIDDEN_LAYERS))
+      f.write("LEARNING_DECAY = {}\n".format(LEARNING_DECAY))
+      f.write("LEARNING_RATE = {}\n".format(LEARNING_RATE))
+      f.write("MOMENTUM = {}\n".format(MOMENTUM))
+      f.write("TRAINING_ITERATIONS = {}\n".format(TRAINING_ITERATIONS))
+      f.write("BATCH_LEARNING = {}\n".format(BATCH_LEARNING))
+      f.write("VALIDATION_PROPORTION = {}\n".format(VALIDATION_PROPORTION))
 
     # Save the Trained Neural Network
-    uniqueFileName = "generated\\TaskA-TrainedNN-" + strftime("%Y-%m-%d_%H-%M-%S") + '.pkl'
+    uniqueFileName = path.normpath(path.join(generated_dir, "data.pkl"))
+
     writeMode = 'wb' # Write Bytes
     pickle.dump(neuralNet, open(uniqueFileName, writeMode))
-
 
     import matplotlib.pyplot as plot
 
@@ -85,16 +97,17 @@ def run():
     plot.plot(trainingErrors, 'b')
     plot.ylabel("Training Error")
     plot.xlabel("Training Steps")
+    plot.savefig(path.normpath(path.join(generated_dir, "errors.png")))
     plot.show()
     plot.clf()
     
     plot = NN2D.plotNN(network=neuralNet, lowerBound=-6.0, upperBound=6.0, step=0.1)
-    plot.show()
 
     if VALIDATION_PROPORTION != 0.0 or VALIDATION_PROPORTION != 0:
-        plot.clf() # Clear figure?
-        plot = NN2D.plotBarComparison(trainingErrors, validationErrors)
-        plot.show()
+      plot = NN2D.plotBarComparison(trainingErrors, validationErrors)
+
+    plot.savefig(path.normpath(path.join(generated_dir, "result.png")))
+    plot.show()
 
 
 # Define ability to run from command line
