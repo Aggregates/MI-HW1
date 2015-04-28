@@ -10,6 +10,36 @@ COMP3330 - Machine Intelligence
 
 ## Task a) ##
 
+### Initial Attempt ###
+
+```python
+HIDDEN_LAYERS = [ 33, 33 ]
+LEARNING_DECAY = 0.999999 # Set in range [0.9, 1]
+LEARNING_RATE = 0.1 # Set in range [0, 1]
+MOMENTUM = 0.1086 # Set in range [0, 0.5]
+TRAINING_ITERATIONS = 10000
+BATCH_LEARNING = False
+VALIDATION_PROPORTION = 0.0
+```
+
+![](images/figure_11.png)
+![](images/figure_11a.png)
+
+### Optimised ANN ###
+
+```python
+HIDDEN_LAYERS = [ 35, 35 ]
+LEARNING_DECAY = 1 # Set in range [0.9, 1]
+LEARNING_RATE = 0.096 # Set in range [0, 1]
+MOMENTUM = 0.1 # Set in range [0, 0.5]
+TRAINING_ITERATIONS = 1500
+BATCH_LEARNING = False
+VALIDATION_PROPORTION = 0.0
+```
+
+![](images/figure_12a.png)
+![](images/figure_12b.png)
+
 ## Task d) ##
 
 Comparing the implementation of Task A (training an artificial neural network on the two spirals task), the SVM responded extremely well to its initial values for its COST and GAMMA parameters to achieve a satisfying result as shown below:

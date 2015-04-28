@@ -10,6 +10,7 @@ from pybrain.datasets import SupervisedDataSet
 from pybrain.structure import FeedForwardNetwork
 from pybrain.structure import LinearLayer, SigmoidLayer, MDLSTMLayer, TanhLayer, LSTMLayer
 from pybrain.structure import FullConnection
+from pybrain.tools.shortcuts import buildNetwork
 from support import csv
 from graphpy import NN2D
 from time import strftime
@@ -21,11 +22,11 @@ import pickle
 
 def run():
     # Parameters used for program
-    HIDDEN_LAYERS = 10
-    LEARNING_DECAY = 0.999999 # Set in range [0.9, 1]
-    LEARNING_RATE = 0.1 # Set in range [0, 1]
-    MOMENTUM = 0.1086 # Set in range [0, 0.5]
-    TRAINING_ITERATIONS = 20000
+    HIDDEN_LAYERS = [ 35, 35 ]
+    LEARNING_DECAY = 1 # Set in range [0.9, 1]
+    LEARNING_RATE = 0.096 # Set in range [0, 1]
+    MOMENTUM = 0.1 # Set in range [0, 0.5]
+    TRAINING_ITERATIONS = 1500
     BATCH_LEARNING = False
     VALIDATION_PROPORTION = 0.0
 
@@ -35,30 +36,9 @@ def run():
     # Set up the network and trainer
     inDimension = dataset.indim
     outDimension = dataset.outdim
-    neuralNet = FeedForwardNetwork()
 
-    # Define the node input layers
-    inLayer = LinearLayer(inDimension, name='input')
-    hiddenLayer1 = MDLSTMLayer(HIDDEN_LAYERS, name='hidden1')
-    hiddenLayer2 = SigmoidLayer(HIDDEN_LAYERS, name='hidden2')
-    outLayer = LinearLayer(outDimension, name='output')
-
-    # Add the layers to the network
-    neuralNet.addInputModule(inLayer)
-    neuralNet.addModule(hiddenLayer1)
-    neuralNet.addModule(hiddenLayer2)
-    neuralNet.addOutputModule(outLayer)
-
-    # Define the connections between layers
-    inputHidden1 = FullConnection(inLayer, hiddenLayer1, name='in_h1')
-    hiddenLayer1HiddenLayer2 = FullConnection(hiddenLayer1, hiddenLayer2, name='h1_h2')
-    hiddenLayer2Output = FullConnection(hiddenLayer2, outLayer, name='h2_out')
-
-    # Add the connections to the network. Sort the network
-    neuralNet.addConnection(inputHidden1)
-    neuralNet.addConnection(hiddenLayer1HiddenLayer2)
-    neuralNet.addConnection(hiddenLayer2Output)
-    neuralNet.sortModules()
+    layers = [inDimension] + HIDDEN_LAYERS + [outDimension]
+    neuralNet = buildNetwork(*layers)
 
     print neuralNet
 
@@ -90,6 +70,9 @@ def run():
         else:
             trainingErrors, validationErrors = trainer.trainUntilConvergence(validationProportion=VALIDATION_PROPORTION)
 
+        if trainingError < 0.01:
+          break
+
     # Save the Trained Neural Network
     uniqueFileName = "generated\\TaskA-TrainedNN-" + strftime("%Y-%m-%d_%H-%M-%S") + '.pkl'
     writeMode = 'wb' # Write Bytes
@@ -105,7 +88,7 @@ def run():
     plot.show()
     plot.clf()
     
-    plot = NN2D.plotNN(network=neuralNet, lowerBound=-6.0, upperBound=6.0, step=0.2)
+    plot = NN2D.plotNN(network=neuralNet, lowerBound=-6.0, upperBound=6.0, step=0.1)
     plot.show()
 
     if VALIDATION_PROPORTION != 0.0 or VALIDATION_PROPORTION != 0:
