@@ -5,7 +5,6 @@ target
 *.pyc
 .idea
 *.exe
-*.pkl
 *.class
 *.html
 *.sublime-workspace

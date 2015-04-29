@@ -12,6 +12,9 @@ COMP3330 - Machine Intelligence
 
 ### Initial Attempt ###
 
+Our initial attempt at training a FFN for the original dataset was with the following 
+parameters:
+
 ```python
 HIDDEN_LAYERS = [ 33, 33 ]
 LEARNING_DECAY = 0.999999 # Set in range [0.9, 1]
@@ -22,10 +25,32 @@ BATCH_LEARNING = False
 VALIDATION_PROPORTION = 0.0
 ```
 
+Using pybrain the initial implementation was using a manual instance of the 
+`FeedForwardNetwork` class, adding the layers and making the connections ourselves.
+The following graph and neural network activation show the results.
+
 ![](images/figure_11.png)
+It may be indicated by the scale of the graph that the training errors varied quite a bit, 
+however the network activation gave what we thought was a satisfying result.
+
 ![](images/figure_11a.png)
 
 ### Optimised ANN ###
+
+After revisiting the documentation for pybrain we discovered the `buildNetwork`
+method which is a tool used to help build FFN's without too much effort. 
+
+This is illustrated by rerunning the network using the new approach with the same
+parameters from our initial attempt:
+
+![](images/TaskA-TrainedNN-2015-04-29_14-47-43/errors.png)
+Let it be noted that the training errors actually reached a lower value than in 
+our optimised version below, however the resulting neural network activation was 
+not as visually pleasing.
+
+![](images/TaskA-TrainedNN-2015-04-29_14-47-43/result.png)
+
+Below are our new optimised parameters:
 
 ```python
 HIDDEN_LAYERS = [ 35, 35 ]
@@ -37,8 +62,17 @@ BATCH_LEARNING = False
 VALIDATION_PROPORTION = 0.0
 ```
 
-![](images/figure_12a.png)
-![](images/figure_12b.png)
+It may become evident that the required iterations are much lower than our initial
+attempt, however the results are surprisingly much better.
+
+![](images/TaskA-TrainedNN-2015-04-29_14-26-07/errors.png)
+As mentioned in the initial attempt you can gather some information about the 
+success of the training by looking at the scale of the graph. It is clear that 
+this attempt faired much better just by changing the method in which we used to
+built the network. Whereas there were spikes in our initial attempt, this 
+optimised version faired much better without any real visible spiking.
+
+![](images/TaskA-TrainedNN-2015-04-29_14-26-07/result.png)
 
 ## Task d) ##
 
