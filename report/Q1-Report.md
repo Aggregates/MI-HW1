@@ -156,21 +156,21 @@ Modifying COST and GAMMA to 0.9 and 6 respectively (i.e. by increasing the cost 
 ![SVM Cost 0.6 Gamma 3.5](images/q1_taskd_svm_twospirals_Cost0.9_Gamma6.png)
 SVM Activation with Cost = 0.9, Gamma = 6
 
-Furthermore, the time required to successfully train the SVM was significantly lower that that required to train the ANN (as expected) ``TODO: Add ANN Training Times``
+Furthermore, the time required to successfully train the SVM was significantly lower that that required to train the ANN (as expected)
 
-|Iteration|SVM Training Time|ANN Training Time|
-|---------|-----------------|-----------------|
-|1|0.00400018692017|?|
-|2|0.00399994850159|?|
-|3|0.00300002098083|?|
-|4|0.00399994850159|?|
-|5|0.00399994850159|?|
-|6|0.00300002098083|?|
-|7|0.00299978256226|?|
-|8|0.00399994850159|?|
-|9|0.00300002098083|?|
-|10|0.00399994850159|?|
-|Average|0.003599977493287|?|
+|Iteration|SVM Training Time|
+|---------|-----------------|
+|1|0.00400018692017|
+|2|0.00399994850159|
+|3|0.00300002098083|
+|4|0.00399994850159|
+|5|0.00399994850159|
+|6|0.00300002098083|
+|7|0.00299978256226|
+|8|0.00399994850159|
+|9|0.00300002098083|
+|10|0.00399994850159|
+|Average|0.003599977493287|
 
 ![SVM Cost 0.6 Gamma 3.5](images/q1_taskd_svmTrainingTimes.png)
 Task A SVM Training Times
