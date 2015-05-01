@@ -1,3 +1,11 @@
+COMP3330 - Machine Intelligence
+===============================
+
+* Beau Gibson - C3146845
+* Tyler Haigh - C3182929
+* Simon Hartcher - C3185790
+* Robert Logan - C3165020
+
 # Question 2 - Autoencoder #
 
 # How to Interpret the Graphs #
@@ -83,7 +91,7 @@ Whilst we were not able to achieve better results with less than 8 hidden nodes,
 
 **Conduct experiments on 16-h1-h2-16 ANNs and determine the minimum numer of hidden nodes in the layer**
 
-**How does it compare to the experiments for thr 16-H-16 perceptron**
+**How does it compare to the experiments for the 16-H-16 perceptron**
 
 Initially, it took much longer than expected to successgully train a neural network using two hidden layers of size 16. After some experimenting with the parameters, we were eventually able to create the following network.
 
@@ -103,7 +111,7 @@ BATCH_LEARNING = False
 VALIDATION_PROPORTION = 0.0
 ```
 
-From the errors, it appears that the learning curve is less steep than when training with a single hidden layer. After we changed our network's architecture from two sigmoid layers, to one sigmoid and one tanh layer, we noticed a marked improvement in the learning ability. With our best attempt in using 8 hidden nodes, suddenly became a viable solution to the autoencoder task.
+From the errors, it appears that the learning curve is less steep than when training with a single hidden layer. After we changed our network's architecture from two sigmoid layers, to one sigmoid and one tanh layer, we noticed a marked improvement in the learning ability. With our best attempt from Part 1, using 8 hidden nodes, the parameters suddenly became a viable solution to the autoencoder task.
 
 ![Sigmoid Tanh 8-8 Hidden Errors](images/Q2/Q2Task2-TrainedNN-2015-05-01_18-25-41/errors.png)
 Sigmoid Tanh 8-8 Hidden Nodes (Errors)
@@ -120,6 +128,24 @@ TRAINING_ITERATIONS = 1000
 BATCH_LEARNING = False
 VALIDATION_PROPORTION = 0.0
 ```
+
+Even with this marked improvement in learning ability, we were still not able to achieve a satisfying result when attempting to use a layer of 4 hidden nodes. The following image is one of our better results
+
+![Sigmoid Tanh 4-4 Hidden Nodes (Activations)](images/Q2/Q2Task2-TrainedNN-2015-05-01_18-47-11/activations.png)
+Sigmoid Tanh 4-4 Hidden Nodes (Activations)
+
+```
+HIDDEN_LAYERS = 4
+LEARNING_DECAY = 0.9999
+LEARNING_RATE = 0.211
+MOMENTUM = 0.0
+TRAINING_ITERATIONS = 1000
+BATCH_LEARNING = False
+VALIDATION_PROPORTION = 0.0
+```
+
+From our research into Deep Learning, we hypothesise that the minimum number of hidden nodes to successfully train this network will still be four. The reason for this is the mirroring of the network compression and decompression at its various levels. With only two hidden layers, the minimal compression available will be to reproduce the binary encoding for the input vector.
+
 ## Part 3 ##
 
 **Discuss the role of hidden layers and the role of this type of network**
@@ -131,7 +157,7 @@ From this, the role of the hidden layer when using a X-H-X perceptron is to prov
 This type of network can be used for the following types of training tasks:
 
 ### Undercompletion Tasks ###
-The network compresses the information provided from the inputs to simplify the data when learning, with the restriction that it will only compress well for the data it has observed in training set. When given an input that was not in the original dataset, it may not be able to reconstruct the information
+The network compresses the information provided from the inputs to simplify the data when learning, with the restriction that it will only compress well for the data it has observed in training set. When given an input that was not in the original dataset, it may not be able to reconstruct the information. Undercompletion tasks can be found in Deep Learning where the input vector is compressed througout half of the network, in order to extract unique features. Refer to Deep Learning for more details.
 
 ## Overcompletion Tasks ##
 The network contains at least as many hidden nodes as the inputs which may permit the network to simply copy the inputs through thetwork, hence not learning any useful features from the data.
@@ -158,3 +184,10 @@ https://www.iro.umontreal.ca/~vincentp/Publications/denoising_autoencoders_tr131
 https://www.youtube.com/watch?v=vXMpKYRhpmI - *Neural Networks [7.1] : Deep learning - motivation* (Hugo Larochelle, YouTube)
 
 https://www.youtube.com/watch?v=5rLgoM2Pkso - *Neural networks [6.5] : Autoencoder - undercomplete vs. overcomplete hidden layer* (Hugo Larochelle, YouTube)
+
+# Appendix - SVM Training #
+
+As an extra task, we attempted to use an SVM to solve the autoencoder task of classifying the correct class of input. As expected, the SVM was able to correctly classify the inputs as seen below.
+
+![SVM Training for Autoencoder](images/Q2/Q2Task1-TrainedSVM-2015-05-01_22-21-42/activations.png)
+SVM Training for Autoencoder (x-axis = Input Vector, y-axis = Classification Class)

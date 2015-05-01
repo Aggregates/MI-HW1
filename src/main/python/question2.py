@@ -12,6 +12,10 @@ from graphpy import NN2D
 from time import strftime
 from pybrain.tools.shortcuts import buildNetwork
 from os import path, makedirs
+from svm.svm import *
+from svm.svmutil import svm_train, svm_predict, svm_save_model
+from time import strftime, time
+from mpl_toolkits.mplot3d import Axes3D
 
 import sys
 import numpy
@@ -108,7 +112,6 @@ def part1():
     plot.show()
     plot.clf()
     
-    from mpl_toolkits.mplot3d import Axes3D
     figure = plot.figure()
     axis = figure.add_subplot(111, projection='3d')
     colors = ['r','y','g','c','b','k']
@@ -260,5 +263,56 @@ def part2():
     plot.savefig(path.normpath(path.join(generated_dir, "activations.png")))
     plot.show()
 
+def svm():
+    # Training Parameters
+    
+    # Defines how high the cost is of a misclassification
+    # versus making the decision plane more complex.
+    # Low COST makes decisions very simple but creates classification errors
+    COST = 0.9
+
+    # Used for generalisation
+    # - Low GAMMA means high generalisation
+    # - High GAMMA is closer to original dataset
+    GAMMA = 6
+
+    KERNEL = RBF
+    svm_model.predict = lambda self, x: svm_predict([0], [x], self)[0][0]
+
+    # Get the data
+    SPARSE_LENGTH = 16
+    sparseCodings = sparse_coding.generateFull(SPARSE_LENGTH)
+    dataset, data, outputs, classes = sparse_coding.toSVMProblem(sparseCodings)
+    
+    # Set the parameters for the SVM
+    parameters = svm_parameter()
+    parameters.kernel_type = KERNEL
+    parameters.C = COST
+    parameters.gamma = GAMMA
+
+    # Train the SVM
+    solver = svm_train(dataset, parameters)
+
+    # Create the output path if it doesn't exist
+    generated_dir = path.abspath(path.join("generated", "Q2Task1-TrainedSVM-{}".format(strftime("%Y-%m-%d_%H-%M-%S"))))
+    if not path.exists(generated_dir):
+        makedirs(generated_dir)
+
+    uniqueFileName = path.normpath(path.join(generated_dir, "data.pkl"))
+    svm_save_model(uniqueFileName,solver)
+    
+    # Compare the results to the extected values
+    figure = plot.figure()
+    axis = figure.add_subplot(111)
+    colors = ['r','y','g','c','b','k']
+
+    for sample in sparseCodings:
+        classifier = sparse_coding.getClassifier(sample)
+        activationResult = svm_predict([0.], [sample], solver, '-q')[0][0]
+        axis.bar(classifier, activationResult, color=colors[classifier % len(colors)])
+
+    plot.savefig(path.normpath(path.join(generated_dir, "activations.png")))
+    plot.show()
+
 if __name__ == "__main__":
-    part1()
+    part2()

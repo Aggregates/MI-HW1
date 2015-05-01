@@ -2,6 +2,7 @@ import sys
 from random import randint
 from pybrain.datasets import ClassificationDataSet
 from pybrain.utilities import one_to_n
+from svm.svm import svm_problem
 
 def emptyVector(length):
     emptyCodedVector = []
@@ -56,7 +57,7 @@ def toClassificationDataset(codedSampleSet):
         classifier = getClassifier(sample)
         if classifier not in classes:
             classes.append(classifier)
-    classes.sort()        
+    classes.sort()
     
     # Now that we have all the classes, we process the outputs
     for sample in codedSampleSet:
@@ -73,6 +74,20 @@ def toClassificationDataset(codedSampleSet):
         dataset.addSample(codedSampleSet[i], classifiedSampleSet[i])
 
     return dataset, classes
+
+def toSVMProblem(codedSampleSet):
+    # Calculate the unique classes
+    classes = []
+    for sample in codedSampleSet:
+    
+        classifier = getClassifier(sample)
+        if classifier not in classes:
+            classes.append(classifier)
+    classes.sort()
+
+    # Use libsvm's data container:
+    return svm_problem([classes.index(i) for i in classes], codedSampleSet), codedSampleSet, codedSampleSet, classes
+
 
 
 if __name__ == "__main__":
