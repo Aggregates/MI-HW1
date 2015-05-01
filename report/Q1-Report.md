@@ -77,10 +77,50 @@ optimised version faired much better without any real visible spiking.
 ## Task b) ##
 
 ### Two-Spiral variant ##
-Matlab code from the the following website was used for this part of the task to generate some different variants of "two-spiral" data:
-[link](http://au.mathworks.com/matlabcentral/fileexchange/41459-6-functions-for-generating-artificial-datasets)
+Matlab code from the the following website was used for this part of the task to 
+generate some different variants of "two-spiral" data:
+[Matlab Datasets](http://au.mathworks.com/matlabcentral/fileexchange/41459-6-functions-for-generating-artificial-datasets)
 
-This site contained a number of different datasets which could be used to train neural networks and SVMs. One of these datasets was a variant of the two-spiral dataset with the second spiral being slightly out of phase with the first.  We initially ran the data through the ANN with the same parameters from Task a). As can be seen below, the neural network activation for this training in no way resembled the initial data.
+This site contained a number of different datasets which could be used to train 
+neural networks and SVMs. One of these datasets was a variant of the two-spiral 
+dataset with the second spiral being slightly out of phase with the first.  We 
+initially ran the data through the ANN with the same parameters from Task a). As 
+can be seen below, the neural network activation for this training in no way resembled 
+the initial data.
+
+![](images/TaskA-TrainedNN-2015-05-01_09-49-31/result.png))
+
+Further changes were required to various parameters including addional nodes in the hidden layers
+and altering the number of training iterations.
+
+![20 Hidden Nodes & 1000 Iterations](images/20 hidden 1000 iter.png)
+![](images/20 hidden.png)
+
+![40 Hidden Nodes & 2000 Iterations](images/2000 iter spiral.png)
+![](images/2000 iter.png)
+
+Following numerous successive training regimes, the final parameters were found to be below.
+
+```python
+HIDDEN_LAYERS = [55, 55, 55]
+LEARNING_DECAY = 0.999999
+LEARNING_RATE = 0.1
+MOMENTUM = 0
+TRAINING_ITERATIONS = 15000
+BATCH_LEARNING = False
+VALIDATION_PROPORTION = 0.0
+```
+
+![](images/2_spirat_var_final.png)
+![](images/errors.png)
+
+The comparison with applying our SVM architecture to this new dataset was dramatic. The SVM trained in a
+fraction of a second with our previous parameters on the data and was able to almost perfectly graph the output
+as shown below.
+
+![](images/2 spiral variant.png)
+
+In this image we can easily see the different shapes of the two spirals in the variant data.
 
 ## Task c) ##
 

@@ -2,7 +2,9 @@
 
 **Classification for Human Activity Recognition**
 
-For this task we chose to train an SVM based on the successful architectures and results from previous questions. These have proven to be both fast and accurate for continued use. The task here was to create a function which would successfully analyse records consisting of 561 attributes and correctly classify them into one of the six following human movements:
+For this task we chose to train an SVM based on the successful architectures and results from previous questions.
+These have proven to be both fast and accurate for continued use. The task here was to create a function which would
+successfully analyse records consisting of 561 attributes and correctly classify them into one of the six following human movements:
 
 1. Walking
 2. Walking Upstairs
@@ -11,16 +13,21 @@ For this task we chose to train an SVM based on the successful architectures and
 5. Standing
 6. Laying
 
-Approaching the task we used as a basis the "trainsvm" code from the labs. This SVM was used successfully to classify the handwriting recognition data, which is similar to this task. We applied the following paramenters:
+Approaching the task we used as a basis the "trainsvm" code from the labs. This SVM was used successfully to classify the handwriting
+recognition data, which is similar to this task. We applied the following paramenters:
+
 ```python
 Cost = 0.9
 Gamma = 6
 Kernel = RBF
 ```
-The graphs below indicates that the SVM used for the task was able to classify all activities successfully with 100% accuracy. 
 
-``TODO: graphs go here``
+The graph below indicates that the SVM used for the task was able to classify all activities successfully with 100% accuracy.
 
-It was observed however, that the time taken by the SVM was considerable. Given the very large dataset, this is to be expected, however this time taken on even relatively fast PC hardware indicates that it is unlikley to be efficient on a smartphone.
+![](images/Q3 Classified.png)
+
+The training was also performed relatively quickly as was found also with the other implementations of the SVM to
+the problems. This particular function could easily be used within a smartphone environment being efficient in both
+time and space considerations.
 
 
