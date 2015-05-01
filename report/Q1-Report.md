@@ -74,6 +74,28 @@ optimised version faired much better without any real visible spiking.
 
 ![](images/TaskA-TrainedNN-2015-04-29_14-26-07/result.png)
 
+## Task c) ##
+
+We found that the 4 spiral task took more iterations than 2 spirals to get a 
+result that was at all meaningful in addition to an extra hidden layer, and more
+neurons per layer.
+
+```python
+HIDDEN_LAYERS = [55, 55, 55]
+LEARNING_DECAY = 0.999999
+LEARNING_RATE = 0.1
+MOMENTUM = 0
+TRAINING_ITERATIONS = 15000
+BATCH_LEARNING = False
+VALIDATION_PROPORTION = 0.0
+```
+
+It is interesting to note that our best result was achieved with a momentum of 
+zero. However, the result is not very desirable. 
+
+![](images/Q1TaskC-TrainedNN-2015-05-01_20-12-06/errors.png)
+![](images/Q1TaskC-TrainedNN-2015-05-01_20-12-06/result.png)
+
 ## Task d) ##
 
 Comparing the implementation of Task A (training an artificial neural network on the two spirals task), the SVM responded extremely well to its initial values for its COST and GAMMA parameters to achieve a satisfying result as shown below:
