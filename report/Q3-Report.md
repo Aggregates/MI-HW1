@@ -14,7 +14,7 @@ successfully analyse records consisting of 561 attributes and correctly classify
 6. Laying
 
 Approaching the task we used as a basis the "trainsvm" code from the labs. This SVM was used successfully to classify the handwriting
-recognition data, which is similar to this task. We applied the following paramenters:
+recognition data, which is similar to this task. We applied the following parameters:
 
 ```python
 Cost = 0.9
@@ -29,5 +29,4 @@ The graph below indicates that the SVM used for the task was able to classify al
 The training was also performed relatively quickly as was found also with the other implementations of the SVM to
 the problems. This particular function could easily be used within a smartphone environment being efficient in both
 time and space considerations.
-
 
