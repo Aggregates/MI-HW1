@@ -90,7 +90,7 @@ the initial data.
 
 ![](images/TaskA-TrainedNN-2015-05-01_09-49-31/result.png)
 
-Further changes were required to various parameters including addional nodes in the hidden layers
+Further changes were required to various parameters including additional nodes in the hidden layers
 and altering the number of training iterations.
 
 ![20 Hidden Nodes & 1000 Iterations](images/20_hidden_1000_iter.png)
