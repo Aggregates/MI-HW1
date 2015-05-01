@@ -1,3 +1,11 @@
+COMP3330 - Machine Intelligence
+===============================
+
+* Beau Gibson - C3146845
+* Tyler Haigh - C3182929
+* Simon Hartcher - C3185790
+* Robert Logan - C3165020
+
 # Question 3 - Classifier #
 
 **Classification for Human Activity Recognition**
