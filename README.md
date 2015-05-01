@@ -3,6 +3,12 @@ COMP3330 - Machine Intelligence
 
 # Abstract #
 
+This project aims to research several training tasks associated with machine learning, including:
+
+* The Two Spirals Task and variations of
+* The Autoencoder, using a sparse coding
+* The Classification for Human Activity Recognition
+
 # Developer Notes #
 
 1. Download pybuilder (this project's build tool) `pip install pybuilder`
@@ -11,6 +17,9 @@ COMP3330 - Machine Intelligence
 # Project Dependencies #
 
 * pybrain
+* numpy
+* matplotlib
+* libsvm (included)
 
 # Running PyBuilder #
 

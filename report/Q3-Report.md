@@ -24,7 +24,7 @@ Kernel = RBF
 
 The graph below indicates that the SVM used for the task was able to classify all activities successfully with 100% accuracy.
 
-![](images/Q3 Classified.png)
+![](images/Q3_Classified.png)
 
 The training was also performed relatively quickly as was found also with the other implementations of the SVM to
 the problems. This particular function could easily be used within a smartphone environment being efficient in both
