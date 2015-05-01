@@ -93,11 +93,11 @@ the initial data.
 Further changes were required to various parameters including addional nodes in the hidden layers
 and altering the number of training iterations.
 
-![20 Hidden Nodes & 1000 Iterations](images/20 hidden 1000 iter.png)
-![](images/20 hidden.png)
+![20 Hidden Nodes & 1000 Iterations](images/20_hidden_1000_iter.png)
+![](images/20_hidden.png)
 
-![40 Hidden Nodes & 2000 Iterations](images/2000 iter spiral.png)
-![](images/2000 iter.png)
+![40 Hidden Nodes & 2000 Iterations](images/2000_iter_spiral.png)
+![](images/2000_iter.png)
 
 Following numerous successive training regimes, the final parameters were found to be below.
 
@@ -111,14 +111,14 @@ BATCH_LEARNING = False
 VALIDATION_PROPORTION = 0.0
 ```
 
-![](images/2_spirat_var_final.png)
+![](images/2_spiral_var_final.png)
 ![](images/errors.png)
 
 The comparison with applying our SVM architecture to this new dataset was dramatic. The SVM trained in a
 fraction of a second with our previous parameters on the data and was able to almost perfectly graph the output
 as shown below.
 
-![](images/2 spiral variant.png)
+![](images/2_spiral_variant.png)
 
 In this image we can easily see the different shapes of the two spirals in the variant data.
 
