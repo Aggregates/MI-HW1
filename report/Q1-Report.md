@@ -4,7 +4,7 @@ COMP3330 - Machine Intelligence
 * Beau Gibson -
 * Tyler Haigh - C3182929
 * Simon Hartcher - C3185790
-* Robert Logan -
+* Robert Logan - C3165020
 
 # Question 1 - Variations of the Two-Spiral Task #
 
@@ -73,6 +73,14 @@ built the network. Whereas there were spikes in our initial attempt, this
 optimised version faired much better without any real visible spiking.
 
 ![](images/TaskA-TrainedNN-2015-04-29_14-26-07/result.png)
+
+## Task b) ##
+
+### Two-Spiral variant ##
+Matlab code from the the following website was used for this part of the task to generate some different variants of "two-spiral" data:
+[link](http://au.mathworks.com/matlabcentral/fileexchange/41459-6-functions-for-generating-artificial-datasets)
+
+This site contained a number of different datasets which could be used to train neural networks and SVMs. One of these datasets was a variant of the two-spiral dataset with the second spiral being slightly out of phase with the first.  We initially ran the data through the ANN with the same parameters from Task a). As can be seen below, the neural network activation for this training in no way resembled the initial data.
 
 ## Task c) ##
 
