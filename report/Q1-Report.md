@@ -104,12 +104,3 @@ Furthermore, the time required to successfully train the SVM was significantly l
 
 ![SVM Cost 0.6 Gamma 3.5](images/q1_taskd_svmTrainingTimes.png)
 Task A SVM Training Times
-
-# Question 2 - Autoencoder #
-
-## Part 1 ##
-
-**Determine experimentally what is the minimal number of hidden units required for training a 16-H-16 network successfully**
-
-According to Tom Mitchell (1997), when backpropagation is applied to the autoencoder training task, the values of the hidden layers become similar to a binary encoding based on the number of hidden units. For an 8 input autoencoder, the network assigns values that when rounded, form the binary encodings 000 to 111 (i.e. 0 to 7). From here, it can be inferred that, in general, successfully training a neural network requires a single layer of lg(2) hidden units. Hence for the task of training a 16-H-16 network, we should only require 4 hidden units on a singple sigmoid layer, to perform this task. ``TODO: Prove this in out experiments``
-

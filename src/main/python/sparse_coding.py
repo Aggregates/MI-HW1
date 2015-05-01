@@ -26,6 +26,16 @@ def generate(sampleCount, lowerBound=0, upperBound=15):
 
     return dataset
 
+def generateFull(length):
+    dataset = []
+    emptyCodedVector = emptyVector(length)
+
+    for i in xrange(length):
+        sample = codedSample(emptyCodedVector, i)
+        dataset.append(sample)
+    return dataset
+
+
 def getClassifier(sample):
     classifier = 0
     for i in range(len(sample)):
