@@ -88,7 +88,7 @@ initially ran the data through the ANN with the same parameters from Task a). As
 can be seen below, the neural network activation for this training in no way resembled 
 the initial data.
 
-![](images/TaskA-TrainedNN-2015-05-01_09-49-31/result.png))
+![](images/TaskA-TrainedNN-2015-05-01_09-49-31/result.png)
 
 Further changes were required to various parameters including addional nodes in the hidden layers
 and altering the number of training iterations.
